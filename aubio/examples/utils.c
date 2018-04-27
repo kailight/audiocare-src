@@ -55,6 +55,8 @@ char_t * tempo_method = "default";
 // more general stuff
 smpl_t silence_threshold = -90.;
 uint_t mix_input = 0;
+// MULTIDATA stuff
+char_t * datas = "111111111";
 
 uint_t force_overwrite = 0;
 

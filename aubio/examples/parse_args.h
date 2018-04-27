@@ -51,6 +51,8 @@ extern uint_t mix_input;
 // midi tap
 extern smpl_t miditap_note;
 extern smpl_t miditap_velo;
+// datas
+extern char_t * datas;
 
 extern uint_t force_overwrite;
 
@@ -80,6 +82,9 @@ void usage (FILE * stream, int exit_code)
 #ifdef PROG_HAS_OUTPUT
       "       -o      --output           output file\n"
 #endif
+#ifdef PROG_HAS_MULTIDATA
+      "       -d      --data             data values, see docs\n"
+#endif /* PROG_HAS_MULTIDATA */
       "       -r      --samplerate       select samplerate\n"
       "                 use 0 to use input source samplerate, or 32000 to force 32kHz\n"
       "       -B      --bufsize          set buffer size\n"
@@ -138,6 +143,9 @@ parse_args (int argc, char **argv)
 #ifdef HAVE_GETOPT_H
   const char *options = "hv"
     "i:r:B:H:"
+#ifdef PROG_HAS_MULTIDATA
+    "d:"
+#endif /* PROG_HAS_MULTIDATA */
 #ifdef PROG_HAS_JACK
     "j"
 #if defined(PROG_HAS_ONSET) && !defined(PROG_HAS_PITCH)
@@ -169,6 +177,9 @@ parse_args (int argc, char **argv)
     {"samplerate",            1, NULL, 'r'},
     {"bufsize",               1, NULL, 'B'},
     {"hopsize",               1, NULL, 'H'},
+#ifdef PROG_HAS_MULTIDATA
+    {"datas",                 9, NULL, 'd'},
+#endif /* PROG_HAS_MULTIDATA */
 #ifdef PROG_HAS_JACK
     {"jack",                  0, NULL, 'j'},
 #if defined(PROG_HAS_ONSET) && !defined(PROG_HAS_PITCH)
@@ -242,6 +253,10 @@ parse_args (int argc, char **argv)
       case 'H':
         hop_size = atoi (optarg);
         break;
+	  case 'd': /* data params */
+        datas = optarg;
+        // printf("datas, optarg: %s,%s\n",datas,optarg);
+        break;	
       case 'O':                /*onset method */
         onset_method = optarg;
         break;
