@@ -118,7 +118,7 @@ void examples_common_init (int argc, char **argv)
 #ifdef HAVE_JACK
   } else {
     debug ("Jack init ...\n");
-    jack_setup = new_aubio_jack (hop_size, 1, 1, 0, 1);
+    jack_setup = new_aubio_jack (hop_size, 1, 2, 0, 1);
     samplerate = aubio_jack_get_samplerate (jack_setup);
     source_uri = "jack";
 #endif /* HAVE_JACK */
