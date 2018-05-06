@@ -20,7 +20,7 @@
 
 #include "utils.h"
 #define PROG_HAS_MULTIDATA 1
-#define PROG_HAS_JACK 1
+// #define PROG_HAS_JACK 1
 #include "parse_args.h"
 // #include <aubio.h>
 #include <spectral/statistics.c>
@@ -143,7 +143,7 @@ void process_print (void)
   if (flag_mean)     printf("%f ",  cvec_mean (fftgrain) );
   if (flag_centroid) printf("%f ",  cvec_centroid (fftgrain) );
   if (flag_slope)    printf("%f ",  slope->data[0] );
-  //printf("%11f", centroid->data[0] );
+  // printf("%11f", centroid->data[0] );
   if (flag_spread)   printf("%f ",  spread->data[0] );
   if (flag_skewness) printf("%f ",  skewness->data[0] );
   if (flag_kurtosis) printf("%f ",  kurtosis->data[0] );
@@ -214,7 +214,7 @@ int main(int argc, char **argv) {
   verbmsg ("using source: %s at %dHz\n", source_uri, samplerate);
   verbmsg ("buffer_size: %d, ", buffer_size);
   verbmsg ("hop_size: %d\n", hop_size);
-  verbmsg("DATA: mean:%d centroid:%d slope:%d spread:%d skewness:%d kurtosis:%d decrease:%d rolloff:%d mfcc:%d\n", flag_mean, flag_centroid, flag_slope, flag_spread, flag_skewness, flag_kurtosis, flag_decrease, flag_rolloff, flag_mfcc );
+  verbmsg ("DATA: mean:%d centroid:%d slope:%d spread:%d skewness:%d kurtosis:%d decrease:%d rolloff:%d mfcc:%d\n", flag_mean, flag_centroid, flag_slope, flag_spread, flag_skewness, flag_kurtosis, flag_decrease, flag_rolloff, flag_mfcc );
 
   pv = new_aubio_pvoc (buffer_size, hop_size);
   fftgrain = new_cvec (buffer_size);

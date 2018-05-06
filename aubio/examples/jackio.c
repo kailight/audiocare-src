@@ -90,6 +90,7 @@ new_aubio_jack (uint_t hop_size, uint_t ichan, uint_t ochan,
 {
   aubio_jack_t *jack_setup = aubio_jack_alloc (ichan, ochan,
       imidichan, omidichan);
+
   uint_t i;
   char *client_name = "aubio";
   char *jack_port_type;
@@ -120,23 +121,36 @@ new_aubio_jack (uint_t hop_size, uint_t ichan, uint_t ochan,
       (void *) jack_setup);
 
   /* register jack output audio and midi ports */
+  /*
   for (i = 0; i < ochan + omidichan; i++) {
     if (i < ochan) {
       jack_port_type = JACK_DEFAULT_AUDIO_TYPE;
-      AUBIO_SPRINTF (name, "out_%d", i + 1);
+      AUBIO_SPRINTF (name, "out:%d", i + 1);
     } else {
       jack_port_type = JACK_DEFAULT_MIDI_TYPE;
-      AUBIO_SPRINTF (name, "midi_out_%d", i - ochan + 1);
+      AUBIO_SPRINTF (name, "midi_out:%d", i - ochan + 1);
     }
     if ((jack_setup->oports[i] =
             jack_port_register (jack_setup->client, name,
                 jack_port_type, JackPortIsOutput, 0)) == 0) {
       goto beach;
     }
+
+    // outmsg('new_aubio_jack: %s%s', client_name, name);
     AUBIO_DBG ("%s:%s\n", client_name, name);
   }
+  */
+
+  /* register jack output audio channel */
+  jack_setup->oports[0] =
+    jack_port_register ( jack_setup->client, 'hw:1,0', JACK_DEFAULT_AUDIO_TYPE, JackPortIsOutput, 0)
+
+  /* register jack input audio channel */
+  jack_setup->iports[0] =
+    jack_port_register ( jack_setup->client, 'hw:0,0', JACK_DEFAULT_AUDIO_TYPE, JackPortIsInput, 0)
 
   /* register jack input audio ports */
+  /*
   for (i = 0; i < ichan + imidichan; i++) {
     if (i < ichan) {
       jack_port_type = JACK_DEFAULT_AUDIO_TYPE;
@@ -152,6 +166,8 @@ new_aubio_jack (uint_t hop_size, uint_t ichan, uint_t ochan,
     }
     AUBIO_DBG ("%s:%s\n", client_name, name);
   }
+  */
+
 
   /* get sample rate */
   jack_setup->samplerate = jack_get_sample_rate (jack_setup->client);
