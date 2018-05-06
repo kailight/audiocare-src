@@ -142,13 +142,11 @@ new_aubio_jack (uint_t hop_size, uint_t ichan, uint_t ochan,
   */
 
   /* register jack output audio channel */
-  char name1[64];
-  name1 = '1,0';
+  char name1 = '1,0';
   jack_setup->oports[0] =
     jack_port_register ( jack_setup->client, name1, JACK_DEFAULT_AUDIO_TYPE, JackPortIsOutput, 0)
 
-  char name2[64];
-  name2 = '0,0';
+  char name2 = '0,0';
   /* register jack input audio channel */
   jack_setup->iports[0] =
     jack_port_register ( jack_setup->client, name2, JACK_DEFAULT_AUDIO_TYPE, JackPortIsInput, 0)
