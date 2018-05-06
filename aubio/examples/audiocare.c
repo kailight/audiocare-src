@@ -20,7 +20,7 @@
 
 #include "utils.h"
 #define PROG_HAS_MULTIDATA 1
-// #define PROG_HAS_JACK 1
+#define PROG_HAS_JACK 1
 #include "parse_args.h"
 // #include <aubio.h>
 #include <spectral/statistics.c>
@@ -80,13 +80,13 @@ void process_block (fvec_t *ibuf, fvec_t *obuf)
 
   // calc spectral slope
   if (flag_slope) {
-  	slope = new_fvec (1); 
+  	slope = new_fvec (1);
 	aubio_specdesc_do (spectre_slope, fftgrain, slope);
   }
 
   // calc spectral centroid
   // if (flag_centroid) {
-    // centroid = new_fvec (1); 
+    // centroid = new_fvec (1);
     // centroid = cvec_centroid (fftgrain);
   	// aubio_specdesc_do (spectre_centroid, fftgrain, centroid);
   // }
@@ -143,16 +143,16 @@ void process_print (void)
   if (flag_mean)     printf("%f ",  cvec_mean (fftgrain) );
   if (flag_centroid) printf("%f ",  cvec_centroid (fftgrain) );
   if (flag_slope)    printf("%f ",  slope->data[0] );
-  // printf("%11f", centroid->data[0] );
+  //printf("%11f", centroid->data[0] );
   if (flag_spread)   printf("%f ",  spread->data[0] );
   if (flag_skewness) printf("%f ",  skewness->data[0] );
   if (flag_kurtosis) printf("%f ",  kurtosis->data[0] );
   if (flag_decrease) printf("%f ",  kurtosis->data[0] );
   if (flag_rolloff)  printf("%f ",  rolloff->data[0] );
-  
+
   // printf("fftgrain length: %i   ", fftgrain->length);
-  // sample = cvec_norm_get_sample(fftgrain,0); 
-  // printf("spectral slope: %f\n", sample);	
+  // sample = cvec_norm_get_sample(fftgrain,0);
+  // printf("spectral slope: %f\n", sample);
 
 
   // fvec_print (fftgrain->norm);
@@ -190,14 +190,14 @@ int main(int argc, char **argv) {
   if (datas[2] == 49) flag_slope = true;    else flag_slope = false;
   if (datas[3] == 49) flag_spread = true;   else flag_spread = false;
   if (datas[4] == 49) flag_skewness = true; else flag_skewness = false;
-  if (datas[5] == 49) flag_kurtosis = true; else flag_kurtosis = false;  
+  if (datas[5] == 49) flag_kurtosis = true; else flag_kurtosis = false;
   if (datas[6] == 49) flag_decrease = true; else flag_decrease = false;
   if (datas[7] == 49) flag_rolloff = true;  else flag_rolloff = false;
   if (datas[8] == 49) flag_mfcc = true;     else flag_mfcc = false;
 
 
 
-						printf("==time ");	
+						printf("==time ");
   if (flag_mean) 		printf("mean ");
   if (flag_centroid) 	printf("centroid ");
   if (flag_slope) 	    printf("slope ");
@@ -208,13 +208,13 @@ int main(int argc, char **argv) {
   if (flag_rolloff)     printf("rolloff ");
   if (flag_mfcc)        printf("mfcc ");
 						printf("==\n");
-  
+
 
 
   verbmsg ("using source: %s at %dHz\n", source_uri, samplerate);
   verbmsg ("buffer_size: %d, ", buffer_size);
   verbmsg ("hop_size: %d\n", hop_size);
-  verbmsg ("DATA: mean:%d centroid:%d slope:%d spread:%d skewness:%d kurtosis:%d decrease:%d rolloff:%d mfcc:%d\n", flag_mean, flag_centroid, flag_slope, flag_spread, flag_skewness, flag_kurtosis, flag_decrease, flag_rolloff, flag_mfcc );
+  verbmsg("DATA: mean:%d centroid:%d slope:%d spread:%d skewness:%d kurtosis:%d decrease:%d rolloff:%d mfcc:%d\n", flag_mean, flag_centroid, flag_slope, flag_spread, flag_skewness, flag_kurtosis, flag_decrease, flag_rolloff, flag_mfcc );
 
   pv = new_aubio_pvoc (buffer_size, hop_size);
   fftgrain = new_cvec (buffer_size);
