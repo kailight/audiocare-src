@@ -82,8 +82,8 @@ void process_block (fvec_t *ibuf, fvec_t *obuf)
     outmsg("NO JACK\n");
     return;
   }
-  aubio_wavetable_set_amp ( wavetable, aubio_level_lin (ibuf) );
-  aubio_wavetable_set_freq ( wavetable, freq );
+  // aubio_wavetable_set_amp ( wavetable, aubio_level_lin (ibuf) );
+  // aubio_wavetable_set_freq ( wavetable, freq );
   aubio_wavetable_do (wavetable, ibuf, obuf);
 
   fvec_print(ibuf);
