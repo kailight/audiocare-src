@@ -75,7 +75,7 @@ fvec_t *pitch;
 
 void process_block2( fvec_t *ibuf, fvec_t *obuf, aubio_jack_t * jack_setup ) {
 
-  outmsg('process_block2');
+  outmsg("\nprocess_block2: ");
 
   fvec_zeros(obuf);
   fvec_print(jack_setup->ibuf);
@@ -85,7 +85,7 @@ void process_block2( fvec_t *ibuf, fvec_t *obuf, aubio_jack_t * jack_setup ) {
 
 void process_block (fvec_t *ibuf, fvec_t *obuf)
 {
-  outmsg('process_block');
+  outmsg("\nprocess_block: ");
 
   fvec_zeros(obuf);
 
