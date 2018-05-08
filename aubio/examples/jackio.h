@@ -57,6 +57,52 @@ uint_t aubio_jack_get_samplerate (aubio_jack_t * jack_setup);
 void aubio_jack_midi_event_write (aubio_jack_t * jack_setup,
     jack_midi_event_t * event);
 
+
+/**
+ * jack device structure
+ */
+struct _aubio_jack_t
+{
+    /** jack client */
+    jack_client_t *client;
+    /** jack output ports */
+    jack_port_t **oports;
+    /** jack input ports */
+    jack_port_t **iports;
+    /** jack input buffer */
+    jack_sample_t **ibufs;
+    /** jack output buffer */
+    jack_sample_t **obufs;
+#ifdef AUBIO_JACK_NEEDS_CONVERSION
+    /** converted jack input buffer */
+  smpl_t **sibufs;
+  /** converted jack output buffer */
+  smpl_t **sobufs;
+#endif
+    /** jack input audio channels */
+    uint_t ichan;
+    /** jack output audio channels */
+    uint_t ochan;
+    /** jack input midi channels */
+    uint_t imidichan;
+    /** jack output midi channels */
+    uint_t omidichan;
+    /** midi output ringbuffer */
+    jack_ringbuffer_t *midi_out_ring;
+    /** jack samplerate (Hz) */
+    uint_t samplerate;
+    /** jack processing function */
+    aubio_process_func_t callback;
+    /** internal fvec */
+    fvec_t *ibuf;
+    fvec_t *obuf;
+    uint_t hop_size;
+    int pos;
+};
+
+
+
+
 #ifdef __cplusplus
 }
 #endif
