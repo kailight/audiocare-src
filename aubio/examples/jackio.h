@@ -58,6 +58,7 @@ void aubio_jack_midi_event_write (aubio_jack_t * jack_setup,
     jack_midi_event_t * event);
 
 
+typedef jack_default_audio_sample_t jack_sample_t;
 /**
  * jack device structure
  */

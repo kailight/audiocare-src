@@ -26,8 +26,6 @@
 #include "jackio.h"
 #include "aubio_priv.h"
 
-typedef jack_default_audio_sample_t jack_sample_t;
-
 #if HAVE_AUBIO_DOUBLE
 #define AUBIO_JACK_MAX_FRAMES 4096
 #define AUBIO_JACK_NEEDS_CONVERSION
