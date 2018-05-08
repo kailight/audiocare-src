@@ -91,6 +91,8 @@ void process_block (fvec_t *ibuf, fvec_t *obuf)
 {
   outmsg("process_block: \n");
 
+  fvec_print(ibuf);
+
   fvec_zeros(obuf);
 
   // add something to obuf
