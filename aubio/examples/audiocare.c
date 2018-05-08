@@ -133,6 +133,9 @@ void process_block (fvec_t *ibuf, fvec_t *obuf)
 
 void process_print (void)
 {
+
+  print_time(blocks * hop_size);
+
   /* output times in selected format */
   // print_time (blocks * hop_size);
   // outmsg ("\t");
