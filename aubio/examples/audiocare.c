@@ -77,7 +77,7 @@ fvec_t *pitch;
 
 void process_block2( fvec_t *ibuf, fvec_t *obuf ) {
 
-  outmsg("\nprocess_block2: ");
+  outmsg("process_block2: \n");
 
   fvec_zeros(obuf);
   fvec_zeros(ibuf);
@@ -89,7 +89,7 @@ void process_block2( fvec_t *ibuf, fvec_t *obuf ) {
 
 void process_block (fvec_t *ibuf, fvec_t *obuf)
 {
-  outmsg("\nprocess_block: ");
+  outmsg("process_block: \n");
 
   fvec_zeros(obuf);
 
@@ -102,7 +102,7 @@ void process_block (fvec_t *ibuf, fvec_t *obuf)
   }
   // aubio_wavetable_set_amp ( wavetable, aubio_level_lin (ibuf) );
   // aubio_wavetable_set_freq ( wavetable, freq );
-  aubio_wavetable_do (wavetable, ibuf, obuf);
+  // aubio_wavetable_do (wavetable, ibuf, obuf);
 
   // fvec_print(ibuf);
   // fvec_print(obuf);
