@@ -134,6 +134,7 @@ void process_block (fvec_t *ibuf, fvec_t *obuf)
 void process_print (void)
 {
 
+  outmsg("processing_print\n");
   print_time(blocks * hop_size);
 
   /* output times in selected format */
