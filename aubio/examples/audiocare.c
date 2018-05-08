@@ -73,13 +73,19 @@ uint_t n_coefs = 13;
 aubio_pitch_t *o;
 fvec_t *pitch;
 
+void process_block2( fvec_t *ibuf, fvec_t *obuf, aubio_jack_t * jack_setup ) {
+
+  fvec_zeros(obuf);
+  fvec_print(jack_setup->ibuf);
+  return;
+
+}
+
 void process_block (fvec_t *ibuf, fvec_t *obuf, aubio_jack_t * jack_setup)
 {
   fvec_zeros(obuf);
 
   fvec_print(jack_setup->ibuf);
-
-  return;
 
   // add something to obuf
   // aubio_onset_do
@@ -282,7 +288,7 @@ int main(int argc, char **argv) {
   // wavetable = new_aubio_wavetable (samplerate, hop_size);
   // aubio_wavetable_play ( wavetable );
 
-  examples_common_process((aubio_process_func_t)process_block, process_print);
+  examples_common_process((aubio_process_func_t)process_block2, process_print);
 
   // del_aubio_specdesc (spectre_centroid);
   del_aubio_pvoc (pv);
