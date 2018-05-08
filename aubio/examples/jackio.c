@@ -26,8 +26,6 @@
 #include "jackio.h"
 #include "aubio_priv.h"
 
-typedef jack_default_audio_sample_t jack_sample_t;
-
 #if HAVE_AUBIO_DOUBLE
 #define AUBIO_JACK_MAX_FRAMES 4096
 #define AUBIO_JACK_NEEDS_CONVERSION
@@ -90,6 +88,7 @@ new_aubio_jack (uint_t hop_size, uint_t ichan, uint_t ochan,
 {
   aubio_jack_t *jack_setup = aubio_jack_alloc (ichan, ochan,
       imidichan, omidichan);
+
   uint_t i;
   char *client_name = "aubio";
   char *jack_port_type;
@@ -123,35 +122,48 @@ new_aubio_jack (uint_t hop_size, uint_t ichan, uint_t ochan,
   for (i = 0; i < ochan + omidichan; i++) {
     if (i < ochan) {
       jack_port_type = JACK_DEFAULT_AUDIO_TYPE;
-      AUBIO_SPRINTF (name, "out_%d", i + 1);
+      AUBIO_SPRINTF (name, "out:%d", i + 1);
     } else {
       jack_port_type = JACK_DEFAULT_MIDI_TYPE;
-      AUBIO_SPRINTF (name, "midi_out_%d", i - ochan + 1);
+      AUBIO_SPRINTF (name, "midi_out:%d", i - ochan + 1);
     }
     if ((jack_setup->oports[i] =
             jack_port_register (jack_setup->client, name,
                 jack_port_type, JackPortIsOutput, 0)) == 0) {
       goto beach;
     }
+
+    // outmsg('new_aubio_jack: %s%s', client_name, name);
     AUBIO_DBG ("%s:%s\n", client_name, name);
   }
 
   /* register jack input audio ports */
-  for (i = 0; i < ichan + imidichan; i++) {
-    if (i < ichan) {
-      jack_port_type = JACK_DEFAULT_AUDIO_TYPE;
-      AUBIO_SPRINTF (name, "in_%d", i + 1);
-    } else {
-      jack_port_type = JACK_DEFAULT_MIDI_TYPE;
-      AUBIO_SPRINTF (name, "midi_in_%d", i - ichan + 1);
+    for (i = 0; i < ichan + imidichan; i++) {
+      if (i < ichan) {
+        jack_port_type = JACK_DEFAULT_AUDIO_TYPE;
+        AUBIO_SPRINTF (name, "in_%d", i + 1);
+      } else {
+        jack_port_type = JACK_DEFAULT_MIDI_TYPE;
+        AUBIO_SPRINTF (name, "midi_in_%d", i - ichan + 1);
+      }
+      if ((jack_setup->iports[i] =
+              jack_port_register (jack_setup->client, name,
+                  jack_port_type, JackPortIsInput, 0)) == 0) {
+        goto beach;
+      }
+      AUBIO_DBG ("%s:%s\n", client_name, name);
     }
-    if ((jack_setup->iports[i] =
-            jack_port_register (jack_setup->client, name,
-                jack_port_type, JackPortIsInput, 0)) == 0) {
-      goto beach;
-    }
-    AUBIO_DBG ("%s:%s\n", client_name, name);
-  }
+
+  /*
+  jack_setup->oports[0] =
+    jack_port_register ( jack_setup->client, name1, JACK_DEFAULT_AUDIO_TYPE, JackPortIsOutput, 0);
+
+  char name2 = '0,0';
+  jack_setup->iports[0] =
+    jack_port_register ( jack_setup->client, name2, JACK_DEFAULT_AUDIO_TYPE, JackPortIsInput, 0);
+  */
+
+
 
   /* get sample rate */
   jack_setup->samplerate = jack_get_sample_rate (jack_setup->client);

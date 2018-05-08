@@ -42,11 +42,11 @@ typedef struct _aubio_jack_t aubio_jack_t;
 
 /** jack device creation function */
 aubio_jack_t *new_aubio_jack (uint_t hop_size,
-                              uint_t inchannels, uint_t outchannels,
-                              uint_t imidichan, uint_t omidichan);
+    uint_t inchannels, uint_t outchannels,
+    uint_t imidichan, uint_t omidichan);
 /** activate jack client (run jackprocess function) */
 uint_t aubio_jack_activate (aubio_jack_t * jack_setup,
-                            aubio_process_func_t callback);
+    aubio_process_func_t callback);
 /** close and delete jack client */
 void aubio_jack_close (aubio_jack_t * jack_setup);
 void del_aubio_jack (aubio_jack_t * jack_setup);
@@ -55,10 +55,11 @@ uint_t aubio_jack_get_samplerate (aubio_jack_t * jack_setup);
 
 /** write a jack_midi_event_t to the midi output ringbuffer */
 void aubio_jack_midi_event_write (aubio_jack_t * jack_setup,
-                                  jack_midi_event_t * event);
+    jack_midi_event_t * event);
+
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif                          /* JACKIO_H */
+#endif /* JACKIO_H */
