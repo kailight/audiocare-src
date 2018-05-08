@@ -75,7 +75,7 @@ fvec_t *pitch;
 
 
 
-void process_block2( fvec_t *ibuf, fvec_t *obuf, aubio_jack_t *arg ) {
+void process_block2( fvec_t *ibuf, fvec_t *obuf ) {
 
   outmsg("\nprocess_block2: ");
 
@@ -96,10 +96,12 @@ void process_block (fvec_t *ibuf, fvec_t *obuf)
   // add something to obuf
   // aubio_onset_do
   // aubio_pitch_do (o, ibuf, pitch);
+
   if ( !usejack && !sink_uri ) {
     outmsg("NO JACK\n");
     return;
   }
+
   // aubio_wavetable_set_amp ( wavetable, aubio_level_lin (ibuf) );
   // aubio_wavetable_set_freq ( wavetable, freq );
   aubio_wavetable_do (wavetable, ibuf, obuf);
@@ -294,7 +296,7 @@ int main(int argc, char **argv) {
   // wavetable = new_aubio_wavetable (samplerate, hop_size);
   // aubio_wavetable_play ( wavetable );
 
-  examples_common_process((aubio_process_func_t)process_block2, process_print);
+  examples_common_process((aubio_process_func_t)process_block, process_print);
 
   // del_aubio_specdesc (spectre_centroid);
   del_aubio_pvoc (pv);
