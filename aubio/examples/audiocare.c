@@ -75,7 +75,7 @@ fvec_t *pitch;
 
 
 
-void process_block2( fvec_t *ibuf, fvec_t *obuf, _aubio_jack_t *arg ) {
+void process_block2( fvec_t *ibuf, fvec_t *obuf, aubio_jack_t *arg ) {
 
   outmsg("\nprocess_block2: ");
 
