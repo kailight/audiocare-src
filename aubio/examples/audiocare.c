@@ -129,6 +129,8 @@ void process_block (fvec_t *ibuf, fvec_t *obuf)
     aubio_specdesc_do (spectre_rolloff, fftgrain, rolloff);
   }
 
+  process_print();
+
 }
 
 void process_print (void)

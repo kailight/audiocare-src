@@ -165,7 +165,7 @@ void examples_common_process (aubio_process_func_t process_func,
 
     uint_t total_read = 0;
     blocks = 0;
-
+    outmsg ("read, hopsize");
     do {
       aubio_source_do (this_source, ibuf, &read);
       process_func (ibuf, obuf);
