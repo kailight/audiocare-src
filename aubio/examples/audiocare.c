@@ -69,16 +69,28 @@ float sample;
 uint_t n_filters = 40;
 uint_t n_coefs = 13;
 
+aubio_pitch_t *o;
+fvec_t *pitch;
+
 void process_block (fvec_t *ibuf, fvec_t *obuf)
 {
   fvec_zeros(obuf);
 
   // add something to obuf
-  // aubio_wavetable_do (wavetable, ibuf, obuf);
+  // aubio_pitch_do (o, ibuf, pitch);
+  if ( !usejack && !sink_uri ) {
+    outmsg("NO JACK\n");
+    return;
+  }
+  aubio_wavetable_set_amp ( wavetable, aubio_level_lin (ibuf) );
+  aubio_wavetable_set_freq ( wavetable, freq );
+  aubio_wavetable_do (wavetable, ibuf, obuf);
 
   fvec_print(ibuf);
+  fvec_print(obuf);
 
-  outmsg("processing_block\n");
+  // outmsg("processing_block\n");
+  return;
 
   //compute mag spectrum
   aubio_pvoc_do (pv, ibuf, fftgrain);
