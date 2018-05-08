@@ -21,6 +21,7 @@
 #include "utils.h"
 #define PROG_HAS_MULTIDATA 1
 #define PROG_HAS_JACK 1
+#define PROG_HAS_OUTPUT 1
 #include "parse_args.h"
 // #include <aubio.h>
 #include <spectral/statistics.c>
@@ -28,6 +29,7 @@
 #include <time.h>
 #include <stdbool.h>
 
+aubio_wavetable_t *wavetable;
 aubio_pvoc_t *pv;    // a phase vocoder
 cvec_t *fftgrain;    // outputs a spectrum
 aubio_mfcc_t * mfcc; // which the mfcc will process
@@ -39,6 +41,7 @@ aubio_specdesc_t *spectre_skewness;
 aubio_specdesc_t *spectre_kurtosis;
 aubio_specdesc_t *spectre_decrease;
 aubio_specdesc_t *spectre_rolloff;
+
 
 fvec_t *spectre_vector;
 // fvec_t *out;
@@ -69,6 +72,9 @@ uint_t n_coefs = 13;
 void process_block (fvec_t *ibuf, fvec_t *obuf)
 {
   fvec_zeros(obuf);
+
+  // add something to obuf
+  aubio_wavetable_do (wavetable, ibuf, obuf);
 
   //compute mag spectrum
   aubio_pvoc_do (pv, ibuf, fftgrain);
@@ -245,6 +251,9 @@ int main(int argc, char **argv) {
   // process_block()
   // process_print()	
 
+  wavetable = new_aubio_wavetable (samplerate, hop_size);
+  aubio_wavetable_play ( wavetable );
+
   examples_common_process((aubio_process_func_t)process_block, process_print);
 
   // del_aubio_specdesc (spectre_centroid);
@@ -260,6 +269,7 @@ int main(int argc, char **argv) {
     del_aubio_mfcc(mfcc);
     del_fvec(mfcc_out);
   }
+  del_aubio_wavetable(wavetable);
 
 beach:
   examples_common_del();
