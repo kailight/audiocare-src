@@ -175,6 +175,7 @@ void examples_common_process (aubio_process_func_t process_func,
         outmsg("printing!\n");
         print();
       }
+
       if (this_sink) {
         outmsg("sinking!\n");
         aubio_sink_do (this_sink, obuf, hop_size);
