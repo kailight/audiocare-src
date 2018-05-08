@@ -74,7 +74,9 @@ void process_block (fvec_t *ibuf, fvec_t *obuf)
   fvec_zeros(obuf);
 
   // add something to obuf
-  aubio_wavetable_do (wavetable, ibuf, obuf);
+  // aubio_wavetable_do (wavetable, ibuf, obuf);
+
+  fvec_print(ibuf);
 
   outmsg("processing_block\n");
 
