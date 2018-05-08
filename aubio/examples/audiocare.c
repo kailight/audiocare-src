@@ -78,6 +78,7 @@ void process_block (fvec_t *ibuf, fvec_t *obuf)
 
   fvec_print(jack_setup->ibuf);
 
+
   // add something to obuf
   // aubio_onset_do
   // aubio_pitch_do (o, ibuf, pitch);
