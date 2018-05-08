@@ -19,6 +19,7 @@
 */
 
 #include "utils.h"
+#include "jackio.h"
 #define PROG_HAS_MULTIDATA 1
 #define PROG_HAS_JACK 1
 #define PROG_HAS_OUTPUT 1
