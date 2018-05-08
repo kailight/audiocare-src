@@ -19,7 +19,7 @@
 */
 
 #include "utils.h"
-#include "jackio.c"
+#include "jackio.h"
 #define PROG_HAS_MULTIDATA 1
 #define PROG_HAS_JACK 1
 #define PROG_HAS_OUTPUT 1
@@ -73,9 +73,53 @@ uint_t n_coefs = 13;
 aubio_pitch_t *o;
 fvec_t *pitch;
 
-void process_block2( fvec_t *ibuf, fvec_t *obuf, void *arg ) {
 
-  aubio_jack_t *jack_setup2 = (aubio_jack_t *) arg;
+/**
+ * jack device structure
+ */
+struct ajt
+{
+    /** jack client */
+    jack_client_t *client;
+    /** jack output ports */
+    jack_port_t **oports;
+    /** jack input ports */
+    jack_port_t **iports;
+    /** jack input buffer */
+    jack_sample_t **ibufs;
+    /** jack output buffer */
+    jack_sample_t **obufs;
+#ifdef AUBIO_JACK_NEEDS_CONVERSION
+    /** converted jack input buffer */
+  smpl_t **sibufs;
+  /** converted jack output buffer */
+  smpl_t **sobufs;
+#endif
+    /** jack input audio channels */
+    uint_t ichan;
+    /** jack output audio channels */
+    uint_t ochan;
+    /** jack input midi channels */
+    uint_t imidichan;
+    /** jack output midi channels */
+    uint_t omidichan;
+    /** midi output ringbuffer */
+    jack_ringbuffer_t *midi_out_ring;
+    /** jack samplerate (Hz) */
+    uint_t samplerate;
+    /** jack processing function */
+    aubio_process_func_t callback;
+    /** internal fvec */
+    fvec_t *ibuf;
+    fvec_t *obuf;
+    uint_t hop_size;
+    int pos;
+};
+
+
+void process_block2( fvec_t *ibuf, fvec_t *obuf, ajt *arg ) {
+
+  ajt *jack_setup2 = arg;
 
   outmsg("\nprocess_block2: ");
 
