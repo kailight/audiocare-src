@@ -293,8 +293,8 @@ int main(int argc, char **argv) {
   // process_block()
   // process_print()	
 
-  // wavetable = new_aubio_wavetable (samplerate, hop_size);
-  // aubio_wavetable_play ( wavetable );
+  wavetable = new_aubio_wavetable (samplerate, hop_size);
+  aubio_wavetable_play ( wavetable );
 
   examples_common_process((aubio_process_func_t)process_block, process_print);
 
