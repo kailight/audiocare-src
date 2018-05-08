@@ -74,6 +74,8 @@ aubio_pitch_t *o;
 fvec_t *pitch;
 
 
+typedef jack_default_audio_sample_t jack_sample_t;
+
 /**
  * jack device structure
  */
