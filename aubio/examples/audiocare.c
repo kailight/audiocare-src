@@ -75,13 +75,13 @@ fvec_t *pitch;
 
 
 
-void process_block2( fvec_t *ibuf, fvec_t *obuf, void * arg ) {
+void process_block2( fvec_t *ibuf, fvec_t *obuf, void *arg ) {
 
   outmsg("\nprocess_block2: ");
 
   fvec_zeros(obuf);
   fvec_zeros(ibuf);
-  // fvec_print(arg->ibuf);
+  fvec_print(arg->ibuf);
   return;
 
 }
@@ -96,12 +96,10 @@ void process_block (fvec_t *ibuf, fvec_t *obuf)
   // add something to obuf
   // aubio_onset_do
   // aubio_pitch_do (o, ibuf, pitch);
-
   if ( !usejack && !sink_uri ) {
     outmsg("NO JACK\n");
     return;
   }
-
   // aubio_wavetable_set_amp ( wavetable, aubio_level_lin (ibuf) );
   // aubio_wavetable_set_freq ( wavetable, freq );
   aubio_wavetable_do (wavetable, ibuf, obuf);
@@ -122,27 +120,27 @@ void process_block (fvec_t *ibuf, fvec_t *obuf)
 
   // calc spectral slope
   if (flag_slope) {
-  	slope = new_fvec (1);
-	aubio_specdesc_do (spectre_slope, fftgrain, slope);
+    slope = new_fvec (1);
+    aubio_specdesc_do (spectre_slope, fftgrain, slope);
   }
 
   // calc spectral centroid
   // if (flag_centroid) {
-    // centroid = new_fvec (1);
-    // centroid = cvec_centroid (fftgrain);
-  	// aubio_specdesc_do (spectre_centroid, fftgrain, centroid);
+  // centroid = new_fvec (1);
+  // centroid = cvec_centroid (fftgrain);
+  // aubio_specdesc_do (spectre_centroid, fftgrain, centroid);
   // }
 
   // calc spectral spread
   if (flag_spread) {
-  	spread = new_fvec (1);
-  	aubio_specdesc_do (spectre_spread, fftgrain, spread);
+    spread = new_fvec (1);
+    aubio_specdesc_do (spectre_spread, fftgrain, spread);
   }
 
   // calc spectral skewness
   if (flag_skewness) {
-  	skewness = new_fvec (1);
-  	aubio_specdesc_do (spectre_skewness, fftgrain, skewness);
+    skewness = new_fvec (1);
+    aubio_specdesc_do (spectre_skewness, fftgrain, skewness);
   }
 
   // calc spectral kurtosis
@@ -245,7 +243,7 @@ int main(int argc, char **argv) {
 
 
 
-						printf("==time ");
+  printf("==time ");
   if (flag_mean) 		printf("mean ");
   if (flag_centroid) 	printf("centroid ");
   if (flag_slope) 	    printf("slope ");
@@ -255,9 +253,7 @@ int main(int argc, char **argv) {
   if (flag_decrease)    printf("decrease ");
   if (flag_rolloff)     printf("rolloff ");
   if (flag_mfcc)        printf("mfcc ");
-						printf("==\n");
-
-
+  printf("==\n");
 
   verbmsg ("using source: %s at %dHz\n", source_uri, samplerate);
   verbmsg ("buffer_size: %d, ", buffer_size);
@@ -268,19 +264,19 @@ int main(int argc, char **argv) {
   fftgrain = new_cvec (buffer_size);
 
   // spectre_centroid = new_aubio_specdesc ("centroid", buffer_size);
-  if (flag_slope)	
+  if (flag_slope)
     spectre_slope = new_aubio_specdesc ("slope", buffer_size);
   if (flag_spread)
-    spectre_spread = new_aubio_specdesc ("spread", buffer_size);	
+    spectre_spread = new_aubio_specdesc ("spread", buffer_size);
   if (flag_skewness)
-    spectre_skewness = new_aubio_specdesc ("skewness", buffer_size);	
+    spectre_skewness = new_aubio_specdesc ("skewness", buffer_size);
   if (flag_kurtosis)
     spectre_kurtosis = new_aubio_specdesc ("kurtosis", buffer_size);
   if (flag_decrease)
     spectre_decrease = new_aubio_specdesc ("decrease", buffer_size);
   if (flag_rolloff)
     spectre_rolloff  = new_aubio_specdesc ("rolloff", buffer_size);
-  if (flag_mfcc) {   
+  if (flag_mfcc) {
     mfcc = new_aubio_mfcc(buffer_size, n_filters, n_coefs, samplerate);
     mfcc_out = new_fvec(n_coefs);
   }
@@ -291,7 +287,7 @@ int main(int argc, char **argv) {
   }
 
   // process_block()
-  // process_print()	
+  // process_print()
 
   wavetable = new_aubio_wavetable (samplerate, hop_size);
   aubio_wavetable_play ( wavetable );
