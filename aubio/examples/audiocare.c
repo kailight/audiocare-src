@@ -76,6 +76,8 @@ void process_block (fvec_t *ibuf, fvec_t *obuf)
   // add something to obuf
   aubio_wavetable_do (wavetable, ibuf, obuf);
 
+  outmsg("processing_block\n");
+
   //compute mag spectrum
   aubio_pvoc_do (pv, ibuf, fftgrain);
 
