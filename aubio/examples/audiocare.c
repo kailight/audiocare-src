@@ -76,7 +76,10 @@ void process_block (fvec_t *ibuf, fvec_t *obuf)
 {
   fvec_zeros(obuf);
 
+  fvec_print(jack_setup->ibuf);
+
   // add something to obuf
+  // aubio_onset_do
   // aubio_pitch_do (o, ibuf, pitch);
   if ( !usejack && !sink_uri ) {
     outmsg("NO JACK\n");
@@ -273,8 +276,8 @@ int main(int argc, char **argv) {
   // process_block()
   // process_print()	
 
-  wavetable = new_aubio_wavetable (samplerate, hop_size);
-  aubio_wavetable_play ( wavetable );
+  // wavetable = new_aubio_wavetable (samplerate, hop_size);
+  // aubio_wavetable_play ( wavetable );
 
   examples_common_process((aubio_process_func_t)process_block, process_print);
 
