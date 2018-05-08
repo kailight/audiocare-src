@@ -75,13 +75,13 @@ fvec_t *pitch;
 
 
 
-void process_block2( fvec_t *ibuf, fvec_t *obuf, void *arg ) {
+void process_block2( fvec_t *ibuf, fvec_t *obuf ) {
 
   outmsg("\nprocess_block2: ");
 
   fvec_zeros(obuf);
   fvec_zeros(ibuf);
-  fvec_print(arg->ibuf);
+  // fvec_print(arg->ibuf);
   return;
 
 }
