@@ -81,7 +81,7 @@ void process_block2( fvec_t *ibuf, fvec_t *obuf, aubio_jack_t * jack_setup ) {
 
 }
 
-void process_block (fvec_t *ibuf, fvec_t *obuf, aubio_jack_t * jack_setup)
+void process_block (fvec_t *ibuf, fvec_t *obuf)
 {
   fvec_zeros(obuf);
 
