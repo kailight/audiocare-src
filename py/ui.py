@@ -1,4 +1,3 @@
-import tkinter as tk
 import sys
 
 class Application(tk.Frame):

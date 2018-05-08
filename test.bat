@@ -1,8 +1,6 @@
 #!/bin/bash
 echo "Running Audiocare Main Script"
 
-./aubio/build/examples/aubiocare -B 2048 -H 2048 -v -i ./hello.wav -d 111111111
-# ./aubio/build/examples/aubiocare -B 2048 -H 2048 -v -i ./hello.wav -d 100000000
-# ./aubio/build/examples/aubiocare -i ./hello.wav
+aubio\build\examples\audiocare.exe -B 2048 -H 2048 -d 111111111 -i hello.wav
 
 echo "Whoop! Done"

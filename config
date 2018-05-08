@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # device_id, to know which room the sound comes from on server
 device_id=001
 # server ip and port to send collected data to (e.g. http://127.0.0.1:8000)

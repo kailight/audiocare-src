@@ -312,6 +312,12 @@ def configure(ctx):
     # check for fftw3
     if (ctx.options.enable_fftw3 != False or ctx.options.enable_fftw3f != False):
         # one of fftwf or fftw3f
+        ctx.check_cfg(package = 'fftw3_3',
+                args = '--cflags --libs fftw3f >= 3.0.0',
+                mandatory = ctx.options.enable_fftw3f)
+        if (ctx.options.enable_double == True):
+            ctx.msg('Warning', 'fftw3f enabled, but compiling in double precision!')
+
         if (ctx.options.enable_fftw3f != False):
             ctx.check_cfg(package = 'fftw3f',
                     args = '--cflags --libs fftw3f >= 3.0.0',
