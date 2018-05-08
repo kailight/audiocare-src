@@ -73,7 +73,7 @@ uint_t n_coefs = 13;
 aubio_pitch_t *o;
 fvec_t *pitch;
 
-void process_block2( fvec_t *ibuf, fvec_t *obuf, aubio_jack_t jack_setup ) {
+void process_block2( fvec_t *ibuf, fvec_t *obuf, _aubio_jack_t jack_setup ) {
 
   outmsg("\nprocess_block2: ");
 
@@ -83,6 +83,7 @@ void process_block2( fvec_t *ibuf, fvec_t *obuf, aubio_jack_t jack_setup ) {
   return;
 
 }
+
 
 void process_block (fvec_t *ibuf, fvec_t *obuf)
 {
