@@ -78,6 +78,7 @@ void process_block (fvec_t *ibuf, fvec_t *obuf)
 
   fvec_print(jack_setup->ibuf);
 
+  return;
 
   // add something to obuf
   // aubio_onset_do
@@ -90,8 +91,8 @@ void process_block (fvec_t *ibuf, fvec_t *obuf)
   // aubio_wavetable_set_freq ( wavetable, freq );
   aubio_wavetable_do (wavetable, ibuf, obuf);
 
-  fvec_print(ibuf);
-  fvec_print(obuf);
+  // fvec_print(ibuf);
+  // fvec_print(obuf);
 
   // outmsg("processing_block\n");
   return;
