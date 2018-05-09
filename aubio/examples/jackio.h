@@ -47,6 +47,8 @@ aubio_jack_t *new_aubio_jack (uint_t hop_size,
 /** activate jack client (run jackprocess function) */
 uint_t aubio_jack_activate (aubio_jack_t * jack_setup,
     aubio_process_func_t callback);
+uint_t audiocare_jack_activate (aubio_jack_t * jack_setup,
+                            aubio_process_func_t callback);
 /** close and delete jack client */
 void aubio_jack_close (aubio_jack_t * jack_setup);
 void del_aubio_jack (aubio_jack_t * jack_setup);
