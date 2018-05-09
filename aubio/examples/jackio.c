@@ -200,6 +200,19 @@ aubio_jack_activate (aubio_jack_t * jack_setup, aubio_process_func_t callback)
   return 0;
 }
 
+
+uint_t
+audiocare_jack_activate(aubio_jack_t * jack_setup, aubio_process_func_t callback) {
+
+  jack_setup->callback = callback;
+  if (jack_activate (jack_setup->client)) {
+    AUBIO_ERR ("jack client activation failed");
+    return 1;
+  }
+  return 0;
+
+}
+
 void
 aubio_jack_close (aubio_jack_t * jack_setup)
 {

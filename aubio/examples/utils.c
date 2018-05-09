@@ -142,11 +142,13 @@ void examples_common_del (void)
   fflush(stdout);
 }
 
+
 void audiocare_callback(fvec_t *ibuf) {
 
   fvec_print(ibuf);
 
 }
+
 
 void audiocare_process( aubio_process_func_t process_func, aubio_print_func_t print ) {
 
@@ -155,13 +157,8 @@ void audiocare_process( aubio_process_func_t process_func, aubio_print_func_t pr
   ev.time = 0; // send it now
   verbmsg ("Special Audiocare Jack activation ...\n");
 
-  // aubio_jack_activate (jack_setup, process_func);
-  jack_setup->callback = audiocare_callback;
-  /* actual jack process activation */
-  if (jack_activate (jack_setup->client)) {
-    AUBIO_ERR ("jack client activation failed");
-    return 1;
-  }
+  audiocare_jack_activate (jack_setup, process_func);
+
   verbmsg ("Processing (Ctrl+C to quit) ...\n");
   pause ();
   aubio_jack_close (jack_setup);
