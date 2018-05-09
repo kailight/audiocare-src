@@ -297,7 +297,7 @@ static int block_process(aubio_jack_t *dev,
 static int
 aubio_jack_process (jack_nframes_t nframes, void *arg)
 {
-  outmsg("aubio_jack_process()");
+  // outmsg("aubio_jack_process()");
 
   aubio_jack_t *dev = (aubio_jack_t *) arg;
   uint_t i;
@@ -333,7 +333,7 @@ aubio_jack_process (jack_nframes_t nframes, void *arg)
     process_midi_output (dev, nframes);
   }
 
-  outmsg("ibufs[0]: %f\n", dev->ibufs[0]);
+  // outmsg("ibufs[0]: %f\n", dev->ibufs[0]);
 
   return 0;
 }
