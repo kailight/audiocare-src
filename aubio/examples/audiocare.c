@@ -294,6 +294,8 @@ int main(int argc, char **argv) {
   wavetable = new_aubio_wavetable (samplerate, hop_size);
   aubio_wavetable_play ( wavetable );
 
+  audiocare_process( (aubio_process_func_t)process_block, process_print );
+
   examples_common_process((aubio_process_func_t)process_block, process_print);
 
   // del_aubio_specdesc (spectre_centroid);
