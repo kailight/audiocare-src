@@ -331,6 +331,8 @@ aubio_jack_process (jack_nframes_t nframes, void *arg)
     process_midi_output (dev, nframes);
   }
 
+  printf("Ibufs length: %i\n", dev->ibufs->length)
+
   return 0;
 }
 

@@ -30,11 +30,12 @@
 #include <time.h>
 #include <stdbool.h>
 
+fvec_t *audiocare_data;
 aubio_wavetable_t *wavetable;
 aubio_pvoc_t *pv;    // a phase vocoder
 cvec_t *fftgrain;    // outputs a spectrum
-aubio_mfcc_t * mfcc; // which the mfcc will process
-fvec_t * mfcc_out;   // to get the output coefficients
+aubio_mfcc_t *mfcc; // which the mfcc will process
+fvec_t *mfcc_out;   // to get the output coefficients
 aubio_specdesc_t *spectre_slope;
 aubio_specdesc_t *spectre_centroid;
 aubio_specdesc_t *spectre_spread;
