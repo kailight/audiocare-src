@@ -333,8 +333,7 @@ aubio_jack_process (jack_nframes_t nframes, void *arg)
     process_midi_output (dev, nframes);
   }
 
-  fvec_print(dev->ibufs)
-  // outmsg("Ibufs: %f\n", dev->ibufs);
+  outmsg("ibufs[0]: %f\n", dev->ibufs[0]);
 
   return 0;
 }
