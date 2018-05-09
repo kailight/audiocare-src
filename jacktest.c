@@ -33,11 +33,11 @@ process (jack_nframes_t nframes, void *arg)
     // in = jack_port_get_buffer (input_port, nframes);
 
     /* print some text */
-    const char *text = "Write this to the file";
-    fprintf(f, "Some text: %s\n", text);
+    printf("Jack data");
+    fprintf(f, "Jack data\n");
 
     /* print integers and floats */
-    fprintf(f, "data: %f\n", in[0]);
+    // fprintf(f, "data: %f\n", in[0]);
 
     // out = jack_port_get_buffer (output_port, nframes);
     // memcpy (out, in,
@@ -73,8 +73,8 @@ main (int argc, char *argv[])
         printf("Error opening file!\n");
         exit(1);
     }
-    printf("opened file data.txt for writing\n");
-    fprintf(f, "some text\n");
+    printf("test\n");
+    fprintf(f, "Some text\n");
 
     exit(1);
 
