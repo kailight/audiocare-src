@@ -74,7 +74,9 @@ main (int argc, char *argv[])
         exit(1);
     }
     printf("opened file data.txt for writing\n");
-    fprintf(f, "some %s\n", "text");
+    fprintf(f, "some text\n");
+
+    exit(1);
 
     /* open a client connection to the JACK server */
 
