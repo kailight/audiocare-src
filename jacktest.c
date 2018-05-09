@@ -67,12 +67,14 @@ main (int argc, char *argv[])
     jack_options_t options = JackNullOption;
     jack_status_t status;
 
-    /* foobar */
+    /* write something to file data.txt */
     f = fopen("data.txt", "w");
     if (f == NULL) {
         printf("Error opening file!\n");
         exit(1);
     }
+
+    fprintf(f, "some %s\n", "text");
 
     /* open a client connection to the JACK server */
 
