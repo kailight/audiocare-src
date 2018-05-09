@@ -73,7 +73,7 @@ main (int argc, char *argv[])
         printf("Error opening file!\n");
         exit(1);
     }
-
+    printf(f, "opened file data.txt for writing\n");
     fprintf(f, "some %s\n", "text");
 
     /* open a client connection to the JACK server */
