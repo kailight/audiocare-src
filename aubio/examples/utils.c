@@ -196,10 +196,8 @@ void examples_common_process (aubio_process_func_t process_func,
     do {
       aubio_source_do (this_source, ibuf, &read);
       process_func (ibuf, obuf);
-        outmsg("printing?\n");
       // print to console if verbose or no output given
       if (verbose || sink_uri == NULL) {
-        outmsg("printing!\n");
         print();
       }
 
