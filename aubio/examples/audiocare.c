@@ -87,13 +87,15 @@ void process_block2( fvec_t *ibuf, fvec_t *obuf ) {
 }
 
 
-void process_block (fvec_t *ibuf, fvec_t *obuf)
-{
-  outmsg("process_block: \n");
+void
+process_block ( fvec_t *ibuf, fvec_t *obuf ) {
+
+  outmsg("process_block: ");
 
   // fvec_print(ibuf);
-  printf( "%f", fvec_get_sample(ibuf, 0) );
-
+  printf( "%f:", fvec_get_sample(ibuf, 0) );
+  aubio_wavetable_do(wavetable, ibuf, obuf);
+  printf( "%f ", fvec_get_sample(ibuf, 0) );
 
   // fvec_zeros(obuf);
 
