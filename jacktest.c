@@ -75,9 +75,7 @@ main (int argc, char *argv[])
         exit(1);
     }
     printf("test\n");
-    fprintf(f, "Some text\n");
-
-    exit(1);
+    fprintf(f, "Starting\n");
 
     /* open a client connection to the JACK server */
 
