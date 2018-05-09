@@ -54,6 +54,7 @@ process (jack_nframes_t nframes, void *arg)
 void
 jack_shutdown (void *arg)
 {
+    fprintf(f, "Exiting\n");
     exit (1);
 }
 
