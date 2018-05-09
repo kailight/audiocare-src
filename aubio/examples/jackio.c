@@ -297,6 +297,8 @@ static int block_process(aubio_jack_t *dev,
 static int
 aubio_jack_process (jack_nframes_t nframes, void *arg)
 {
+  prinf('aubio_jack_process()');
+
   aubio_jack_t *dev = (aubio_jack_t *) arg;
   uint_t i;
   for (i = 0; i < dev->ichan; i++) {
@@ -331,7 +333,7 @@ aubio_jack_process (jack_nframes_t nframes, void *arg)
     process_midi_output (dev, nframes);
   }
 
-  printf("Ibufs length: %i\n", dev->ibufs->length)
+  printf("Ibufs length: %f\n", dev->ibufs);
 
   return 0;
 }
