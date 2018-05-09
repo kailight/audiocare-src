@@ -1,5 +1,5 @@
 /**
- * @file audiojack.c
+ * @file jacktest.c
  *
  * @brief Simple client to test JACK on RPI
  */
