@@ -33,7 +33,7 @@ process (jack_nframes_t nframes, void *arg)
     // in = jack_port_get_buffer (input_port, nframes);
 
     /* print some text */
-    printf("Jack data");
+    // printf("Jack data");
     fprintf(f, "Jack data\n");
 
     /* print integers and floats */
@@ -70,7 +70,7 @@ main (int argc, char *argv[])
     jack_status_t status;
 
     /* write something to file data.txt */
-    f = fopen("data.txt", "w");
+    f = fopen("data.txt", "a");
     if (f == NULL) {
         printf("Error opening file!\n");
         exit(1);
@@ -106,12 +106,10 @@ main (int argc, char *argv[])
        it ever shuts down, either entirely, or if it
        just decides to stop calling us.
     */
-
     jack_on_shutdown (client, jack_shutdown, 0);
 
     /* display the current sample rate.
      */
-
     printf ("engine sample rate: %" PRIu32 "\n",
             jack_get_sample_rate (client));
 
