@@ -55,6 +55,7 @@ process (jack_nframes_t nframes, void *arg)
     crun++;
 
     if (crun > 5) {
+      jack_client_close(client);
       done();
     }
 
