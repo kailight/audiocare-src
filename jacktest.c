@@ -65,7 +65,6 @@ void signalHandler(int sig)
 {
     printf("CTRL+C'ed\n");
     fprintf(f, "CTRL+C'ed\n");
-    running = 0;
 }
 
 
