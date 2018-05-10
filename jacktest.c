@@ -25,6 +25,7 @@ FILE *f;
 void
 done() {
   jack_client_close(client);
+  int i;
   for (i = 0; i < 5; i++) {
     fprintf(f, "%i\n", i);
   }
