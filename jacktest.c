@@ -230,6 +230,8 @@ main (int argc, char *argv[])
 
     free (ports);
 
+    printf("Done\n");
+
     // If you kill this program you'll see xruns for sure. Better call jack_client_close( client ) via atexit(..).
 
     /* keep running until stopped by the user */
