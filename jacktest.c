@@ -54,6 +54,7 @@ process (jack_nframes_t nframes, void *arg)
     ibufs[crun] = (jack_sample_t *) jack_port_get_buffer (input_port, nframes);
     crun++;
 
+    exit(1);
 
     if (crun > 5) {
       jack_client_close(client);
