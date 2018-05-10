@@ -17,6 +17,7 @@ jack_port_t *input_port;
 jack_port_t *output_port;
 jack_client_t *client;
 jack_sample_t *ibufs[5];
+char filename = "jack-test-results.txt";
 int crun = 0;
 
 FILE *f;
@@ -25,6 +26,7 @@ FILE *f;
 void
 done() {
   jack_client_close(client);
+  print("Jack test is done, check %s\n", filename);
   int i;
   for (i = 0; i < 5; i++) {
     fprintf(f, "%i\n", i);
@@ -110,7 +112,7 @@ main (int argc, char *argv[])
     jack_status_t status;
 
     /* write something to file data.txt */
-    f = fopen("data.txt", "a");
+    f = fopen(filename, "a");
     if (f == NULL) {
         printf("Error opening file!\n");
         exit(1);
