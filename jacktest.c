@@ -14,6 +14,7 @@
 jack_port_t *input_port;
 jack_port_t *output_port;
 jack_client_t *client;
+jack_sample_t **ibuf;
 
 FILE *f;
 
@@ -31,7 +32,7 @@ process (jack_nframes_t nframes, void *arg)
     jack_default_audio_sample_t *in, *out;
 
     printf("yay");
-    exit(1);
+    return 1;
 
     // in = jack_port_get_buffer (input_port, nframes);
 
