@@ -17,7 +17,7 @@ jack_port_t *input_port;
 jack_port_t *output_port;
 jack_client_t *client;
 jack_sample_t *ibufs[5];
-char filename = "jack-test-results.txt";
+const filename = 'jack-test-results.txt';
 int crun = 0;
 
 FILE *f;
