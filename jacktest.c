@@ -26,11 +26,14 @@ FILE *f;
 void
 done() {
   printf("Jack test is done, check %s\n", filename);
-  jack_client_close(client);
+  // jack_client_close(client);
+  jack_deactivate(client);
+
   int i;
   for (i = 0; i < 5; i++) {
     fprintf(f, "%i\n", i);
   }
+
   // exit(1);
 }
 
