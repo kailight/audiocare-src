@@ -121,14 +121,14 @@ main (int argc, char *argv[])
 
 
     jack_set_thread_init_callback( client, jack_thread_init, 0 );
-    printf("Process callback set");
+    printf("Thread callback set\n");
 
     /* tell the JACK server to call `process()' whenever
        there is work to be done.
     */
     jack_set_process_callback (client, process, 0);
 
-    printf("Process callback set");
+    printf("Process callback set\n");
 
     /* tell the JACK server to call `jack_shutdown()' if
        it ever shuts down, either entirely, or if it
@@ -138,8 +138,11 @@ main (int argc, char *argv[])
 
     /* display the current sample rate.
      */
-    printf ("engine sample rate: %" PRIu32 "\n",
+    printf ("Engine sample rate: %" PRIu32 "\n",
             jack_get_sample_rate (client));
+
+    fprintf(f, "Test exit\n");
+    exit(1);
 
     /* create two ports */
 
