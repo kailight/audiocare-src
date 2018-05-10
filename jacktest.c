@@ -14,10 +14,20 @@
 jack_port_t *input_port;
 jack_port_t *output_port;
 jack_client_t *client;
-int ibuf[100];
+jack_default_sample_t ibufs[5];
 int crun = 0;
 
 FILE *f;
+
+
+void
+done() {
+  jack_client_close(client);
+  for (i = 0; i < 5; i++) {
+    fprintf(f, "%i\n", i);
+  }
+  exit(1);
+}
 
 /**
  * The process callback for this JACK application is called in a
@@ -32,12 +42,11 @@ process (jack_nframes_t nframes, void *arg)
 {
     jack_default_audio_sample_t *in, *out;
 
-    // ibufs[crun] = (jack_sample_t *) jack_port_get_buffer (input_port, nframes);
+    ibufs[crun] = (jack_sample_t *) jack_port_get_buffer (input_port, nframes);
     crun++;
 
     if (crun > 5) {
-        jack_client_close(client);
-        exit(1);
+      done();
     }
 
     // printf("yay");
