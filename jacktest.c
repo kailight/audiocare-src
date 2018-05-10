@@ -69,7 +69,7 @@ jack_shutdown (void *arg)
 }
 
 int
-jack_thread_init() {
+jack_thread_init(void *arg) {
   printf("thread init\n");
 }
 
@@ -120,6 +120,7 @@ main (int argc, char *argv[])
 
 
     jack_set_thread_init_callback( client, jack_thread_init, 0 );
+    printf("Process callback set");
 
     /* tell the JACK server to call `process()' whenever
        there is work to be done.
