@@ -165,9 +165,6 @@ main (int argc, char *argv[])
     printf ("Engine sample rate: %" PRIu32 "\n",
             jack_get_sample_rate (client));
 
-    fprintf(f, "Test exit\n");
-    exit(1);
-
     /* create two ports */
 
     input_port = jack_port_register (client, "input",
