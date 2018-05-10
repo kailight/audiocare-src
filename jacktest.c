@@ -30,7 +30,7 @@ process (jack_nframes_t nframes, void *arg)
 {
     jack_default_audio_sample_t *in, *out;
 
-    print('yay');
+    print("yay");
     exit(1);
 
     // in = jack_port_get_buffer (input_port, nframes);
