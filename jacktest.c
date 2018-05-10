@@ -49,6 +49,7 @@ done() {
 int
 process (jack_nframes_t nframes, void *arg)
 {
+    exit(0);
     jack_default_audio_sample_t *in, *out;
 
     ibufs[crun] = (jack_sample_t *) jack_port_get_buffer (input_port, nframes);
@@ -236,15 +237,15 @@ main (int argc, char *argv[])
 
     /* keep running until stopped by the user */
 
-    // sleep (-1);
+    sleep (-1);
 
     /* this is never reached but if the program
        had some other way to exit besides being killed,
        they would be important to call.
     */
 
-    // jack_client_close (client);
-    // exit (0);
+    jack_client_close (client);
+    exit (0);
 }
 
 
