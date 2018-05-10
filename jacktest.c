@@ -33,7 +33,12 @@ process (jack_nframes_t nframes, void *arg)
     jack_default_audio_sample_t *in, *out;
 
     // ibufs[crun] = (jack_sample_t *) jack_port_get_buffer (input_port, nframes);
-    // crun++;
+    crun++;
+
+    if (crun > 5) {
+        jack_client_close(client);
+        exit(1);
+    }
 
     // printf("yay");
     // return 1;
@@ -218,3 +223,5 @@ main (int argc, char *argv[])
     jack_client_close (client);
     exit (0);
 }
+
+
