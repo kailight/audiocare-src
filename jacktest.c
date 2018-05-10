@@ -32,25 +32,23 @@ process (jack_nframes_t nframes, void *arg)
 {
     jack_default_audio_sample_t *in, *out;
 
-    ibufs[crun] = (jack_sample_t *) jack_port_get_buffer (input_port, nframes);
+    // ibufs[crun] = (jack_sample_t *) jack_port_get_buffer (input_port, nframes);
+    // crun++;
 
-    crun++;
+    // printf("yay");
+    // return 1;
 
-    printf("yay");
-    return 1;
-
-    // in = jack_port_get_buffer (input_port, nframes);
+    in = jack_port_get_buffer (input_port, nframes);
 
     /* print some text */
     // printf("Jack data");
-    fprintf(f, "Jack data\n");
+    // fprintf(f, "Jack data\n");
 
     /* print integers and floats */
     // fprintf(f, "data: %f\n", in[0]);
 
-    // out = jack_port_get_buffer (output_port, nframes);
-    // memcpy (out, in,
-    //        sizeof (jack_default_audio_sample_t) * nframes);
+    out = jack_port_get_buffer (output_port, nframes);
+    memcpy (out, in, sizeof (jack_default_audio_sample_t) * nframes);
 
     return 0;
 }
