@@ -68,14 +68,15 @@ jack_shutdown (void *arg)
     exit (1);
 }
 
-int
+void
 jack_thread_init(void *arg) {
   printf("thread init\n");
 }
 
 
 // Called when ctrl-c is pressed
-void signalHandler(int sig)
+void
+signalHandler(int sig)
 {
     printf("CTRL+C'ed\n");
     fprintf(f, "CTRL+C'ed\n");
