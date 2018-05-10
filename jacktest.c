@@ -11,7 +11,7 @@
 #include <string.h>
 #include <jack/jack.h>
 
-typedef jack_default_sample_t jack_sample_t;
+typedef jack_default_audio_sample_t jack_sample_t;
 
 jack_port_t *input_port;
 jack_port_t *output_port;
