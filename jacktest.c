@@ -54,6 +54,8 @@ process (jack_nframes_t nframes, void *arg)
 }
 
 
+
+
 /**
  * JACK calls this shutdown_callback if the server ever shuts down or
  * decides to disconnect the client.
@@ -64,6 +66,11 @@ jack_shutdown (void *arg)
     printf("Exiting\n");
     fprintf(f, "Exiting\n");
     exit (1);
+}
+
+int
+jack_thread_init() {
+  printf("thread init\n");
 }
 
 
@@ -111,10 +118,15 @@ main (int argc, char *argv[])
         fprintf (stderr, "unique name `%s' assigned\n", client_name);
     }
 
+
+    jack_set_thread_init_callback( client, jack_thread_init, 0 );
+
     /* tell the JACK server to call `process()' whenever
        there is work to be done.
     */
     jack_set_process_callback (client, process, 0);
+
+    printf("Process callback set");
 
     /* tell the JACK server to call `jack_shutdown()' if
        it ever shuts down, either entirely, or if it
