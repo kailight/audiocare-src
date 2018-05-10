@@ -17,7 +17,7 @@ jack_port_t *input_port;
 jack_port_t *output_port;
 jack_client_t *client;
 jack_sample_t *ibufs[5];
-const char filename;
+char filename;
 int crun = 0;
 
 FILE *f;
@@ -111,7 +111,7 @@ main (int argc, char *argv[])
     jack_options_t options = JackNullOption;
     jack_status_t status;
 
-    filename = 'jack-test-results.txt';
+    filename = "jack-test-results.txt";
 
     /* write something to file data.txt */
     f = fopen(filename, "a");
