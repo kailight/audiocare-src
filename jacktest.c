@@ -14,7 +14,8 @@
 jack_port_t *input_port;
 jack_port_t *output_port;
 jack_client_t *client;
-jack_default_audio_sample_t **ibuf;
+int ibuf[100];
+int crun = 0;
 
 FILE *f;
 
@@ -30,6 +31,10 @@ int
 process (jack_nframes_t nframes, void *arg)
 {
     jack_default_audio_sample_t *in, *out;
+
+    ibufs[crun] = (jack_sample_t *) jack_port_get_buffer (input_port, nframes);
+
+    crun++;
 
     printf("yay");
     return 1;
@@ -91,7 +96,6 @@ main (int argc, char *argv[])
     fprintf(f, "Starting\n");
 
     /* open a client connection to the JACK server */
-
     client = jack_client_open (client_name, options, &status, server_name);
     if (client == NULL) {
         fprintf (stderr, "jack_client_open() failed, "
