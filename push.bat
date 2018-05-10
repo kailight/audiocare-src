@@ -1,2 +1,2 @@
 git commit . -m auto
-git push origin master --force
+git push https://kailight:123ftwtbh@github.com/kailight/audiocare.git

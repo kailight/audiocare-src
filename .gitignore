@@ -101,3 +101,5 @@ ENV/
 .mypy_cache/
 
 jack2-master/
+
+push.bat
