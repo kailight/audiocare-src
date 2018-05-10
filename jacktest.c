@@ -26,7 +26,7 @@ FILE *f;
 void
 done() {
   jack_client_close(client);
-  print("Jack test is done, check %s\n", filename);
+  printf("Jack test is done, check %s\n", filename);
   int i;
   for (i = 0; i < 5; i++) {
     fprintf(f, "%i\n", i);
