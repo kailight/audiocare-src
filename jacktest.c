@@ -14,7 +14,7 @@
 jack_port_t *input_port;
 jack_port_t *output_port;
 jack_client_t *client;
-jack_sample_t **ibuf;
+jack_default_audio_sample_t **ibuf;
 
 FILE *f;
 
