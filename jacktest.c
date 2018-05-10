@@ -60,6 +60,15 @@ jack_shutdown (void *arg)
 }
 
 
+// Called when ctrl-c is pressed
+void signalHandler(int sig)
+{
+    printf("CTRL+C'ed\n");
+    fprintf(f, "CTRL+C'ed\n");
+    running = 0;
+}
+
+
 int
 main (int argc, char *argv[])
 {
