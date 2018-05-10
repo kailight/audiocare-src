@@ -16,7 +16,7 @@ typedef jack_default_sample_t jack_sample_t;
 jack_port_t *input_port;
 jack_port_t *output_port;
 jack_client_t *client;
-jack_sample_t ibufs[5];
+jack_sample_t *ibufs[5];
 int crun = 0;
 
 FILE *f;
