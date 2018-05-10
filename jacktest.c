@@ -35,7 +35,7 @@ done() {
     fprintf(f, "%i\n", i);
   }
 
-  // exit(1);
+  exit(1);
 }
 
 /**
