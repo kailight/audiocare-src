@@ -1,0 +1,45 @@
+Steps
+1. Plug in usb audiocard
+2. > alsamixer
+   select usb sound card from the list with F6
+   unmute all with "m"
+   raise the volume to about 50% on all devices
+   reboot
+3. disable default audio card
+    // file  /etc/modprobe.d/raspi-blacklist.conf
+    // ++ snd-bcm2835
+    // file /proc
+    // snd_bcm2835 32768 0 - Live 0x7f0f5000 (C)
+    file /boot/config.txt
+    +- # dtparam=audio=on
+    > touch 777 /etc/asound.conf
+    ++
+      pcm.!default {
+        type hw
+        card 0
+      }
+      ctl.!default {
+        type hw
+        card 0
+      }
+    file /etc/modprobe.d/alsa-base.conf
+    ++ options snd-usb-audio index=0
+    > reboot
+    (test with aplay -l arecord -l grep for card #)
+4.
+   > sudo bash
+   > cd /
+   > git install
+   > cd /audiocare/aubio
+   > chmod -R 777 .
+   > ./scripts/get_waf.sh
+   > ./waf configure
+   // find / -name jack.pc (jack not found)
+   // apt search libjack
+   > apt install libjack-dev
+   > jackd -dalsa (test, should work)
+   > ./waf build
+   > cd ..
+   > ./relink
+
+5.
