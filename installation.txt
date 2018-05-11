@@ -43,3 +43,5 @@ Steps
    > ./relink
 
 5.
+   > ./test
+   > ./testj
