@@ -94,7 +94,8 @@ process_block ( fvec_t *ibuf, fvec_t *obuf ) {
   // outmsg("process_block: ");
 
   // fvec_print(ibuf);
-  printf( "%f ", fvec_get_sample(ibuf, 0) );
+  printf( "%f:", fvec_get_sample(ibuf, 0) );
+  printf( "%f ", fvec_get_sample(obuf, 0) );
   // aubio_wavetable_do(wavetable, ibuf, obuf);
   // printf( "%f ", fvec_get_sample(ibuf, 0) );
 
@@ -297,8 +298,8 @@ int main(int argc, char **argv) {
   // process_block()
   // process_print()
 
-  wavetable = new_aubio_wavetable (samplerate, hop_size);
-  aubio_wavetable_play ( wavetable );
+  // wavetable = new_aubio_wavetable (samplerate, hop_size);
+  // aubio_wavetable_play ( wavetable );
 
   // audiocare_process( (aubio_process_func_t)process_block, process_print );
   examples_common_process( (aubio_process_func_t)process_block, process_print );
