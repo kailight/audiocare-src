@@ -101,7 +101,8 @@ ENV/
 .mypy_cache/
 
 .node_modules/
-..push.bat
-..push
+.push.bat
+.push
+push
 
 ..idea/
