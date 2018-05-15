@@ -103,6 +103,5 @@ ENV/
 .node_modules/
 .push.bat
 .push
-push
 
 ..idea/

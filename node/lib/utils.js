@@ -5,6 +5,8 @@ const readLineSync = require('readline-sync');
 
 let utils = {};
 
+module.exports = utils
+
 let logHTML = function( filename, data ) {
   fs.writeFileSync( 'debug/'+filename+'.html', data );
 };
@@ -151,6 +153,8 @@ let gettime = (str) => {
 return s
 }
 
+
+
 /**
  * Loads config according to environment
  * @param filename
@@ -232,6 +236,7 @@ let loadConfig = () => {
   return config
 }
 
+
 let confirmConfig = (config) => {
 
   let m = `\nThe script will be run `
@@ -269,90 +274,6 @@ let include = function( location ) {
 
 
 
-let qGetRandomDevice = function( mode, cb ) {
-  console.info('getRandomDevice');
-
-  let Q = new Queue();
-
-
-  let getRandomDevice = function( mode, cb ) {
-
-    if (!cb) cb = Q.nxt();
-    db
-      .where( { mode : mode } )
-      .order_by('RAND()')
-      .limit(1)
-      .get( 'devices', function( err, rows, fields ) {
-        if ( err || !rows ) return quit(400,'No rows');
-        cb(rows[0]);
-      });
-
-  };
-
-  getRandomDevice( mode, function(device) {
-
-    if (mode == 'm') {
-      device.screenWidth  = rand(1024,1600);
-      device.screenHeight = rand(768,1200);
-    }
-
-    if (mode == 'd') {
-      device.screenWidth  = rand(1024,1600);
-      device.screenHeight = rand(768,1200);
-    }
-
-    cb(device);
-  });
-
-
-};
-
-/**
- *
- * @param mode string
- * @param cb callable
- * @returns {*}
- */
-let getRandomUserAgent = function(mode,cb) {
-
-  mode = mode || 'd';
-  mode = mode == 'd' ? 'desktop' : mode;
-  mode = mode == 'm' ? 'mobile'  : mode;
-
-  // https://techblog.willshouse.com/2012/01/03/most-common-user-agents/
-  // https://deviceatlas.com/blog/list-of-user-agent-strings
-  let desktopUserAgents = [
-    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
-    'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
-    'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
-    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36',
-    'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0',
-    'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0',
-    'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'
-  ];
-  let mobileUserAgents = [
-    // Samsung Galaxy S6
-    'Mozilla/5.0 (Linux; Android 6.0.1; SM-G920V Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.98 Mobile Safari/537.36',
-    // Sony Xperia Z5
-    'Mozilla/5.0 (Linux; Android 6.0.1; E6653 Build/32.2.A.0.253) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.98 Mobile Safari/537.36'
-  ];
-  let userAgent;
-  if (mode == 'desktop') {
-    userAgent = desktopUserAgents[rand(0,desktopUserAgents.length-1)];
-  }
-  if (mode == 'mobile') {
-    userAgent = mobileUserAgents[rand(0,mobileUserAgents.length-1)];
-  }
-
-  return userAgent;
-
-};
-
-
-
-
-
-
 
 let quit2 = function(message, status = 0) {
 
@@ -371,6 +292,8 @@ let env = () => {
     return 'g2';
   }
 };
+
+
 
 let isDev = () => {
   return true;
