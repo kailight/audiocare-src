@@ -1,8 +1,0 @@
-#!/bin/bash
-args=("$@")
-search=${args[0]}
-match=${args[1]}
-# echo $search
-# echo $match
-x="${search%%$match*}"
-[[ "$x" = "$search" ]] && result=-1 || result="${#x}"

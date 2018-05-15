@@ -32,8 +32,8 @@
 
 fvec_t *audiocare_data;
 aubio_wavetable_t *wavetable;
-aubio_pvoc_t *pv;    // a phase vocoder
-cvec_t *fftgrain;    // outputs a spectrum
+aubio_pvoc_t *pv;   // a phase vocoder
+cvec_t *fftgrain;   // outputs a spectrum
 aubio_mfcc_t *mfcc; // which the mfcc will process
 fvec_t *mfcc_out;   // to get the output coefficients
 aubio_specdesc_t *spectre_slope;
@@ -76,17 +76,6 @@ fvec_t *pitch;
 
 
 
-void process_block2( fvec_t *ibuf, fvec_t *obuf ) {
-
-  outmsg("process_block2: \n");
-
-  fvec_zeros(obuf);
-  fvec_zeros(ibuf);
-  // fvec_print(arg->ibuf);
-  return;
-
-}
-
 
 void
 process_block ( fvec_t *ibuf, fvec_t *obuf ) {
@@ -94,8 +83,8 @@ process_block ( fvec_t *ibuf, fvec_t *obuf ) {
   // outmsg("process_block: ");
 
   // fvec_print(ibuf);
-  printf( "%f:", fvec_get_sample(ibuf, 0) );
-  printf( "%f ", fvec_get_sample(obuf, 0) );
+  // printf( "%f:", fvec_get_sample(ibuf, 0) );
+  // printf( "%f ", fvec_get_sample(obuf, 0) );
   // aubio_wavetable_do(wavetable, ibuf, obuf);
   // printf( "%f ", fvec_get_sample(ibuf, 0) );
 
@@ -104,6 +93,7 @@ process_block ( fvec_t *ibuf, fvec_t *obuf ) {
   // add something to obuf
   // aubio_onset_do
   // aubio_pitch_do (o, ibuf, pitch);
+
   if ( !usejack && !sink_uri ) {
     outmsg("NO JACK\n");
     return;
@@ -116,7 +106,7 @@ process_block ( fvec_t *ibuf, fvec_t *obuf ) {
   // fvec_print(obuf);
 
   // outmsg("processing_block\n");
-  return;
+  // return;
 
   //compute mag spectrum
   aubio_pvoc_do (pv, ibuf, fftgrain);
@@ -175,9 +165,6 @@ process_block ( fvec_t *ibuf, fvec_t *obuf ) {
 
 void process_print (void)
 {
-  return;
-
-  outmsg("processing_print\n");
   print_time(blocks * hop_size);
 
   /* output times in selected format */
@@ -193,8 +180,10 @@ void process_print (void)
 
   // outmsg("====================================================");
 
-  // actually a vector mean (loudness)
+
   printf("%li ", current_time );
+  // actually a vector mean (loudness)
+
   if (flag_mean)     printf("%f ",  cvec_mean (fftgrain) );
   if (flag_centroid) printf("%f ",  cvec_centroid (fftgrain) );
   if (flag_slope)    printf("%f ",  slope->data[0] );
@@ -225,7 +214,10 @@ void process_print (void)
 
 }
 
+
+
 int main(int argc, char **argv) {
+
   int ret = 0;
   // change some default params
   buffer_size  = 2048;

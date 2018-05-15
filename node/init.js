@@ -1,3 +1,5 @@
+console.info('test');
+
 /**
  * CONSTANTS
  */

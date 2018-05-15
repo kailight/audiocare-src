@@ -1,1 +1,1 @@
-export LD_LIBRARY_PATH=$PWD/aubio/build/src
+export LD_LIBRARY_PATH=/audiocare/aubio/build/src
