@@ -1,6 +1,0 @@
-#!/bin/bash
-echo "Running Aubio Mean test"
-
-./aubio/build/examples/aubiomean -i ./hello.wav
-
-echo "Done"
