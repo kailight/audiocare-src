@@ -44,6 +44,4 @@ Steps
 
 5.
    > ./test
-   // test with file works
-   > ./testj
-   // test without file doesn't work
+   // should work

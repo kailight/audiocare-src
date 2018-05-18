@@ -165,23 +165,27 @@ process_block ( fvec_t *ibuf, fvec_t *obuf ) {
 
 void process_print (void)
 {
-  print_time(blocks * hop_size);
+  // print_time(blocks * hop_size);
 
   /* output times in selected format */
   // print_time (blocks * hop_size);
   // outmsg ("\t");
 
-  time_t current_time;
-  // char times;
-  // Obtain current time.
-  current_time = time(NULL);
-  // Convert to local time format.
-  // times = ctime(&current_time);
+  long   ms;
+  time_t  s;
+  struct timespec spec;
+
+  clock_gettime(CLOCK_REALTIME, &spec);
+  s = spec.tv_sec;
+  ms = round(spec.tv_nsec / 1.0e6);
+  if (ms > 999) {
+    s++;
+    ms = 0;
+  }
 
   // outmsg("====================================================");
 
-
-  printf("%li ", current_time );
+  printf("%li%03ld ", s, ms );
   // actually a vector mean (loudness)
 
   if (flag_mean)     printf("%f ",  cvec_mean (fftgrain) );
