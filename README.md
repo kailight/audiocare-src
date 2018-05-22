@@ -16,10 +16,10 @@ We use **/audiocare-src** dir in the root for the sake of simplicity
 > chmod -R 777 .
 > cd aubio
 > ./scripts/get_waf.sh
-#jackd source library is required for compilation
+# jackd source library is required for compilation, so we install
 > apt install libjack-dev
 > ./waf configure
-# should find jack
+# configuration script should find jack, or no-go
 > ./waf build
 ```
 
