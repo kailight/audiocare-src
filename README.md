@@ -1,18 +1,54 @@
-# audiocare
+# Audiocare-Src
 
-## main script usage
-audiocare -d 1000000000
+## C script for compilation
 
-If -d param is absent it defaults to 100000000
+You would need to compile C script for any custom processor/OS
 
-First output column is always time, then the order is
+E.g ARMv6, ARMv7, etc
 
-1. Mean
-2. Centroid
-3. Slope
-4. Spread
-5. Skewness
-6. Kurtosis
-7. Decrease
-8. Rolloff
-9. Mfcc
+We use **/audiocare-src** dir in the root for the sake of simplicity
+
+```bash
+> sudo bash
+> cd /
+> git clone https://github.com/kailight/audiocare-src.git
+> cd /audiocare-src
+> chmod -R 777 .
+> cd aubio
+> ./scripts/get_waf.sh
+#jackd source library is required for compilation
+> apt install libjack-dev
+> ./waf configure
+# should find jack
+> ./waf build
+```
+
+Test the script
+
+> export LD_LIBRARY_PATH=/audiocare-src/aubio/build/examples
+> /audiocare-src/aubio/build/examples/audiocare
+
+**Should output zeroes for all values without jackd running**
+
+Copy compiled file and library into */audiocare/c* folder manually
+It is fine to overwrite
+
+(not tested)
+
+```bash
+> cp /audiocare-src/build/examples/audiocare /audiocare/c/audiocare
+> cp /audiocare-src/build/examples/libaubio.so /audiocare/c/libaubio.so
+> cp /audiocare-src/build/examples/libaubio.so.5 /audiocare/c/libaubio.so.5
+```
+
+Also please send these files to my email so I could add them into package
+
+*Since copying files over SSH requires FTP server, probably emailing is best way in this case* 
+
+(not tested)
+
+```bash
+> echo "first" | mutt -a "/audiocare-src/build/examples/audiocare" -s "C script for ARMv6" -- lastgrunger@gmail.com
+> echo "second" | mutt -a "/audiocare-src/build/examples/libaubio.so" -s "Library for ARMv6" -- lastgrunger@gmail.com
+> echo "third" | mutt -a "/audiocare-src/build/examples/libaubio.so.5" -s "Library2 for ARMv6" -- lastgrunger@gmail.com
+```
