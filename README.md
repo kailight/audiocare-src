@@ -17,19 +17,43 @@ We use **/audiocare-src** dir in the root for the sake of simplicity
 > cd aubio
 > ./scripts/get_waf.sh
 # jackd source library is required for compilation, so we install
+# first update apt (on ZeroW libjack-dev actually didn't install without update)
+> apt-get update
+# then
 > apt install libjack-dev
 > ./waf configure
-# configuration script should find jack, or no-go
+# Configuration script should find jack, or no-go
+# So one of the task output strings should read
+# Checking for 'jack'                      : yes
+# if this is true, build
 > ./waf build
 ```
 
 Test the script
 
-> export LD_LIBRARY_PATH=/audiocare-src/aubio/build/examples
-> /audiocare-src/aubio/build/examples/audiocare
-
+```bash
+# add libs location to path
+export LD_LIBRARY_PATH=/audiocare-src/aubio/build/src
+# run the script
+/audiocare-src/aubio/build/examples/audiocare
+```
 **Should output zeroes for all values without jackd running**
 
+### Testing with jackd
+
+In order to test script with jackd we need 2 SSH sessions
+
+If using putty, open session, then right-click on window title and select "Duplicate Session"
+
+In terminal 1 run 
+    
+    export LD_LIBRARY_PATH=/audiocare-src/aubio/build/src
+    /audiocare-src/aubio/build/examples/audiocare
+
+AFTER that in terminal 2 run
+
+    /usr/bin/jack_connect system:capture_1 aubio:in_1
+    
 Copy compiled file and library into */audiocare/c* folder manually
 It is fine to overwrite
 
