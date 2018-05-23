@@ -45,14 +45,22 @@ In order to test script with jackd we need 2 SSH sessions
 
 If using putty, open session, then right-click on window title and select "Duplicate Session"
 
-In terminal 1 run 
-    
-    export LD_LIBRARY_PATH=/audiocare-src/aubio/build/src
-    /audiocare-src/aubio/build/examples/audiocare
+In terminal 1 run
+ 
+```bash
+# always get root rights to avoid issues    
+sudo bash    
+export LD_LIBRARY_PATH=/audiocare-src/aubio/build/src
+/audiocare-src/aubio/build/examples/audiocare
+```
 
 AFTER that in terminal 2 run
 
-    /usr/bin/jack_connect system:capture_1 aubio:in_1
+```bash
+# always get root rights to avoid issues
+sudo bash
+/usr/bin/jack_connect system:capture_1 aubio:in_1
+```
     
 Copy compiled file and library into */audiocare/c* folder manually
 It is fine to overwrite
